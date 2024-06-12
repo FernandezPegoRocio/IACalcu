@@ -1,2 +1,2 @@
 # IACalcu
-calculadoras realizadas con MaxAI
+calculadoras realizadas con ChatGPT
