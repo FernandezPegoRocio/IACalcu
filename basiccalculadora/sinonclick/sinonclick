@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        /* Estilos CSS aquí */
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="row">
+            <button id="clearButton">C</button>
+            <button id="divideButton">/</button>
+        </div>
+        <div class="row">
+            <button id="sevenButton">7</button>
+            <button id="eightButton">8</button>
+            <button id="nineButton">9</button>
+            <button id="multiplyButton">*</button>
+        </div>
+        <div class="row">
+            <button id="fourButton">4</button>
+            <button id="fiveButton">5</button>
+            <button id="sixButton">6</button>
+            <button id="subtractButton">-</button>
+        </div>
+        <div class="row">
+            <button id="oneButton">1</button>
+            <button id="twoButton">2</button>
+            <button id="threeButton">3</button>
+            <button id="addButton">+</button>
+        </div>
+        <div class="row">
+            <button id="zeroButton">0</button>
+            <button id="equalsButton">=</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = '';
+        
+        // Asignar eventos de clic a los botones
+        document.getElementById('clearButton').addEventListener('click', clearDisplay);
+        document.getElementById('divideButton').addEventListener('click', () => appendOperator('/'));
+        document.getElementById('sevenButton').addEventListener('click', () => appendNumber(7));
+        document.getElementById('eightButton').addEventListener('click', () => appendNumber(8));
+        document.getElementById('nineButton').addEventListener('click', () => appendNumber(9));
+        document.getElementById('multiplyButton').addEventListener('click', () => appendOperator('*'));
+        document.getElementById('fourButton').addEventListener('click', () => appendNumber(4));
+        document.getElementById('fiveButton').addEventListener('click', () => appendNumber(5));
+        document.getElementById('sixButton').addEventListener('click', () => appendNumber(6));
+        document.getElementById('subtractButton').addEventListener('click', () => appendOperator('-'));
+        document.getElementById('oneButton').addEventListener('click', () => appendNumber(1));
+        document.getElementById('twoButton').addEventListener('click', () => appendNumber(2));
+        document.getElementById('threeButton').addEventListener('click', () => appendNumber(3));
+        document.getElementById('addButton').addEventListener('click', () => appendOperator('+'));
+        document.getElementById('zeroButton').addEventListener('click', () => appendNumber(0));
+        document.getElementById('equalsButton').addEventListener('click', calculateResult);
+
+        function appendNumber(number) {
+            displayValue += number;
+            updateDisplay();
+        }
+
+        function appendOperator(operator) {
+            displayValue += operator;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            displayValue = '';
+            updateDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                displayValue = eval(displayValue);
+                updateDisplay();
+            } catch (error) {
+                displayValue = 'Error';
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').value = displayValue;
+        }
+    </script>
+</body>
+</html>
